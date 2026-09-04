@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goereese Honing — ambachtelijke en pure honing uit Goedereede</title>
+<meta name="description" content="Ambachtelijke en pure honing uit Goedereede. Onze bijen vliegen tussen de duinen, natuurgebieden en polders van Goeree-Overflakkee. Puur, onbewerkt en onverhit.">
+<meta name="theme-color" content="#FBF3EB">
+<link rel="canonical" href="https://www.goereesehoning.nl/">
+<link rel="icon" href="assets/bee.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:url" content="https://www.goereesehoning.nl/">
+<meta property="og:title" content="Goereese Honing">
+<meta property="og:description" content="Ambachtelijke en pure honing uit Goedereede.">
+<meta property="og:image" content="https://www.goereesehoning.nl/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="597">
+<meta property="og:image:alt" content="Het strand en de duinen van Goeree-Overflakkee">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  :root {
+    color-scheme: light;
+    --cream:      #FBF3EB;
+    --ink:        #371919;
+    --body:       #4A2A22;
+    --green:      #606C3C;
+    --terracotta: #A85430;
+    --muted:      #8C7A6A;
+    --serif: Georgia, 'Times New Roman', Times, serif;
+    --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: var(--terracotta);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(168, 84, 48, .3);
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+  a:hover,
+  a:focus-visible { color: var(--green); border-bottom-color: rgba(96, 108, 60, .55); }
+  a:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 2px; }
+
+  img { max-width: 100%; }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: clip;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    width: 100%;
+    max-width: 720px;
+    padding: 76px 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeUp 900ms ease both;
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px 0 0;
+    font-weight: 400;
+  }
+  .wordmark__top {
+    font-size: clamp(38px, 11vw, 52px);
+    line-height: 1.05;
+    color: var(--green);
+  }
+  .wordmark__bottom {
+    font-size: clamp(50px, 15vw, 72px);
+    line-height: 1.05;
+    letter-spacing: .01em;
+    color: var(--terracotta);
+  }
+
+  .bee {
+    width: 101px;
+    height: auto;
+    aspect-ratio: 230 / 184;
+    display: block;
+    margin: 20px;
+  }
+
+  .tagline {
+    margin: 0;
+    max-width: 26ch;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--body);
+    text-wrap: pretty;
+  }
+
+  .rule {
+    width: 56px;
+    height: 1px;
+    margin: 40px 0 26px;
+    background: rgba(55, 25, 25, .22);
+  }
+
+  .status {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+  .status span { white-space: nowrap; }
+
+  /* ---------- Landschap ---------- */
+
+  .dunes {
+    width: min(1400px, 118%);
+    max-width: none;
+    height: auto;
+    margin: 30px 0 0;
+    display: block;
+  }
+
+  /* ---------- Verhaal ---------- */
+
+  .story {
+    width: 100%;
+    max-width: 671px;
+    padding: 0 24px;
+    margin-top: -20px;
+  }
+  .story p {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.85;
+    text-align: center;
+    color: var(--body);
+    text-wrap: pretty;
+  }
+
+  /* ---------- Gegevens ---------- */
+
+  .details {
+    width: 100%;
+    max-width: 620px;
+    padding: 0 24px;
+    margin: 58px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 32px 28px;
+    justify-items: center;
+    text-align: center;
+  }
+  .details__group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .details__label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .details__value {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--body);
+  }
+  .details__value--contact { line-height: 1.6; }
+
+  /* ---------- Footer ---------- */
+
+  .footer {
+    width: 100%;
+    max-width: 620px;
+    padding: 35px 24px 0;
+    margin: 54px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid rgba(55, 25, 25, .14);
+  }
+  .footer address {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 46ch;
+    text-align: center;
+    text-wrap: pretty;
+  }
+
+  /* ---------- Sierband ---------- */
+
+  .band {
+    width: 100%;
+    height: 155px;
+    margin-top: 58px;
+    background-image: url(assets/band.png);
+    background-image: -webkit-image-set(url(assets/band.webp) type("image/webp"), url(assets/band.png) type("image/png"));
+    background-image: image-set(url(assets/band.webp) type("image/webp"), url(assets/band.png) type("image/png"));
+    background-repeat: repeat-x;
+    background-position: 50% 100%;
+    background-size: auto 150px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero { animation: none; }
+    a { transition: none; }
+  }
+
+  @media (max-width: 600px) {
+    .hero    { padding-top: 56px; }
+    .tagline { font-size: 20px; }
+    .story   { margin-top: 0; }
+    .story p { font-size: 18px; line-height: 1.75; }
+    .band    { height: 110px; background-size: auto 105px; margin-top: 44px; }
+    .status  { font-size: 10px; letter-spacing: .22em; line-height: 2; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="hero">
+    <h1 class="wordmark">
+      <span class="wordmark__top">Goereese</span>
+      <span class="wordmark__bottom">HONING</span>
+    </h1>
+
+    <picture>
+      <source srcset="assets/bee.webp" type="image/webp">
+      <img class="bee" src="assets/bee.png" width="230" height="184" alt="Bij">
+    </picture>
+
+    <p class="tagline">Ambachtelijke en pure honing uit Goedereede</p>
+
+    <div class="rule" role="presentation"></div>
+
+    <p class="status"><span>Beperkt beschikbaar</span> — <span>vraag naar de oogst</span></p>
+  </header>
+
+  <picture>
+    <source srcset="assets/duin.webp" type="image/webp">
+    <img class="dunes" src="assets/duin.png" width="1763" height="878"
+         alt="Het strand en de duinen van Goeree-Overflakkee">
+  </picture>
+
+  <main class="story">
+    <p>Onze bijen vliegen tussen de duinen, natuurgebieden en de polders van de kop van het eiland: Goeree-Overflakkee. Wat zij verzamelen, verwerken wij met zorg; puur, onbewerkt en onverhit. Zo proef je precies wat deze streek te bieden heeft.</p>
+  </main>
+
+  <section class="details" aria-label="Imkers en contact">
+    <div class="details__group">
+      <span class="details__label">Imkers</span>
+      <span class="details__value">Nel Groeneveld<br>Jaap Keijmel</span>
+    </div>
+    <div class="details__group">
+      <span class="details__label">Contact</span>
+      <span class="details__value details__value--contact">
+        <a href="mailto:mail@jaapkeijmel.nl">mail@jaapkeijmel.nl</a>
+      </span>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <address>Nieuwe Oostdijk 32, 3252 CR Goedereede</address>
+  </footer>
+
+  <div class="band" role="presentation"></div>
+
+</div>
+
+</body>
+</html>
