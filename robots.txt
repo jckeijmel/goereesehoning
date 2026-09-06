@@ -1,0 +1,30 @@
+# Goereese Honing — https://www.goereesehoning.nl/
+# Alle crawlers zijn welkom, inclusief AI-crawlers.
+
+User-agent: *
+Allow: /
+
+# Zoekmachines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI-crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.goereesehoning.nl/sitemap.xml
