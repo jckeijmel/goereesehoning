@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 <title>Goereese Honing — ambachtelijke en pure honing uit Goedereede</title>
 <meta name="description" content="Ambachtelijke voorjaars- en zomerhoning uit Goedereede, Goeree-Overflakkee. Puur, onbewerkt en onverhit. Potten van 450 gram, te koop op afspraak.">
 <meta name="theme-color" content="#FBF3EB">
@@ -143,6 +144,7 @@
     text-align: center;
     animation: fadeUp 900ms ease both;
   }
+  .js .hero { animation: none; }
 
   .wordmark {
     display: flex;
@@ -183,6 +185,7 @@
   .rule {
     width: 56px;
     height: 1px;
+    transform-origin: center;
     margin: 40px 0 26px;
     background: rgba(55, 25, 25, .22);
   }
@@ -375,6 +378,13 @@
 <script>
   if (window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     gsap.registerPlugin(ScrollTrigger);
+
+    gsap.timeline({ defaults: { ease: 'power2.out' } })
+      .from('.wordmark span', { opacity: 0, y: 18, duration: 0.7, stagger: 0.1 })
+      .from('.bee',     { opacity: 0, scale: 0.85, rotate: -6, duration: 0.6 }, '-=0.3')
+      .from('.tagline', { opacity: 0, y: 12, duration: 0.6 }, '-=0.3')
+      .from('.rule',    { scaleX: 0, duration: 0.5 }, '-=0.25')
+      .from('.status',  { opacity: 0, y: 8, duration: 0.6 }, '-=0.3');
 
     function reveal(targets, opts) {
       opts = opts || {};
