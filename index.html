@@ -179,6 +179,24 @@
     display: block;
   }
 
+  /* Productfoto: zachte, uitgevloeide randen zodat hij in de crème opgaat */
+  .jar {
+    width: min(620px, 90%);
+    height: auto;
+    aspect-ratio: 1122 / 1402;
+    display: block;
+    margin: 56px auto 0;
+    border-radius: 14px;
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0, #000 6%, #000 93%, transparent 100%),
+      linear-gradient(to right,  transparent 0, #000 5%, #000 95%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent 0, #000 6%, #000 93%, transparent 100%),
+      linear-gradient(to right,  transparent 0, #000 5%, #000 95%, transparent 100%);
+    mask-composite: intersect;
+  }
+
   /* ---------- Verhaal ---------- */
 
   .story {
@@ -320,6 +338,13 @@
     <p>Wij zijn Nel Groeneveld en Jaap Keijmel, imkers in Goedereede. We hebben <strong>voorjaarshoning</strong> en <strong>zomerhoning</strong>, in potten van 450 gram. Te koop aan huis op afspraak, of per mail te bestellen.</p>
   </main>
 
+  <picture>
+    <source srcset="assets/pot.webp" type="image/webp">
+    <img class="jar" src="assets/pot.jpg" width="1122" height="1402"
+         loading="lazy" decoding="async"
+         alt="Pot Goereese Honing met een botanisch bedrukt kapje, op een aanrecht in het zonlicht">
+  </picture>
+
   <section class="details" aria-label="Imkers en contact">
     <div class="details__group">
       <span class="details__label">Imkers</span>
@@ -374,6 +399,7 @@
 
     reveal('.dunes', { y: 16, scale: 1.05, duration: 1.1 });
     reveal('.story p', { trigger: '.story' });
+    reveal('.jar', { y: 16, scale: 1.04, duration: 1.05 });
     reveal('.details__group', { trigger: '.details' });
     reveal('.footer');
     reveal('.band');
