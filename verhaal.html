@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waar deze honing vandaan komt — Goereese Honing</title>
+<meta name="description" content="Beelden van de bijenstand in de duinen van Goeree-Overflakkee: de raten, het slingeren en de imkers achter Goereese Honing.">
+<meta name="theme-color" content="#FBF3EB">
+<link rel="canonical" href="https://www.goereesehoning.nl/verhaal">
+<link rel="icon" href="assets/bee.png" type="image/png">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:url" content="https://www.goereesehoning.nl/verhaal">
+<meta property="og:title" content="Waar deze honing vandaan komt">
+<meta property="og:description" content="Beelden van de bijenstand in de duinen van Goeree-Overflakkee.">
+<meta property="og:image" content="https://www.goereesehoning.nl/assets/og.jpg">
+
+<style>
+  :root {
+    color-scheme: light;
+    --cream:      #FBF3EB;
+    --ink:        #371919;
+    --body:       #4A2A22;
+    --green:      #606C3C;
+    --terracotta: #A85430;
+    --caption:    #6B5849;
+    --serif: Georgia, 'Times New Roman', Times, serif;
+    --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ---------- Merkblok ---------- */
+
+  .hero {
+    max-width: 720px;
+    margin-inline: auto;
+    padding: 76px 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeUp 900ms ease both;
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-weight: 400;
+  }
+  .wordmark__top {
+    font-size: clamp(38px, 11vw, 52px);
+    line-height: 1.05;
+    color: var(--green);
+  }
+  .wordmark__bottom {
+    font-size: clamp(50px, 15vw, 72px);
+    line-height: 1.05;
+    letter-spacing: .01em;
+    color: var(--terracotta);
+  }
+
+  .bee {
+    width: 101px;
+    height: auto;
+    aspect-ratio: 230 / 184;
+    display: block;
+    margin: 20px 0;
+  }
+
+  .tagline {
+    margin: 0;
+    max-width: 26ch;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--body);
+    text-wrap: pretty;
+  }
+
+  /* ---------- Mediamozaïek ---------- */
+
+  .mosaic {
+    max-width: 880px;
+    margin: 54px auto 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .row--pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .row--quad { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px; }
+
+  figure { margin: 0; }
+
+  .frame {
+    position: relative;
+    overflow: hidden;
+    background: #F2E6D8;
+  }
+  .frame > img,
+  .frame > iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+    display: block;
+  }
+
+  .r-16-10 { aspect-ratio: 16 / 10; }
+  .r-4-5   { aspect-ratio: 4 / 5; }
+  .r-1-1   { aspect-ratio: 1 / 1; }
+  .r-16-9  { aspect-ratio: 16 / 9; }
+  .r-3-4   { aspect-ratio: 3 / 4; }
+
+  .frame--lift { box-shadow: 0 30px 54px -34px rgba(55, 25, 25, .6); }
+
+  figcaption {
+    margin-top: 10px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--caption);
+  }
+
+  /* ---------- Video-facade ---------- */
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+
+  .play {
+    pointer-events: auto;
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(251, 243, 235, .9);
+    cursor: pointer;
+  }
+  .play--lg { width: 62px; height: 62px; }
+  .play svg { display: block; margin-left: 3px; }
+  .play:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+
+  /* ---------- Nog te vullen mediaplekken ---------- */
+
+  .frame--todo {
+    display: grid;
+    place-items: center;
+    background: repeating-linear-gradient(
+      45deg, #F2E6D8, #F2E6D8 10px, #EDDECD 10px, #EDDECD 20px);
+  }
+  .frame--todo span {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--caption);
+    text-align: center;
+    padding: 0 10px;
+    text-wrap: balance;
+  }
+
+  /* ---------- Voettekst ---------- */
+
+  .footer {
+    margin-top: 56px;
+    padding: 0 24px 64px;
+    text-align: center;
+  }
+  .footer a {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(168, 84, 48, .3);
+  }
+  .footer a:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+  @media (hover: hover) {
+    .footer a:hover { color: var(--green); border-bottom-color: rgba(96, 108, 60, .55); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="hero">
+    <h1 class="wordmark">
+      <span class="wordmark__top">Goereese</span>
+      <span class="wordmark__bottom">HONING</span>
+    </h1>
+
+    <picture>
+      <source srcset="assets/bee.webp" type="image/webp">
+      <img class="bee" src="assets/bee.png" width="230" height="184" alt="Bij">
+    </picture>
+
+    <p class="tagline">Ambachtelijke en pure honing uit Goedereede</p>
+  </header>
+
+  <div class="mosaic">
+
+    <!-- 1 — opener, 16:10, volle breedte -->
+    <figure>
+      <div class="frame r-16-10 frame--lift frame--todo" data-slot="1">
+        <span>Foto 1 — de bijenstand in de duinen</span>
+      </div>
+      <figcaption>De stand · voorjaar</figcaption>
+    </figure>
+
+    <!-- 2 + 3 — paar, 4:5 -->
+    <div class="row--pair">
+      <figure>
+        <div class="frame r-4-5 frame--todo" data-slot="2">
+          <span>Foto 2 — raat met verse honing</span>
+        </div>
+      </figure>
+      <figure>
+        <div class="frame r-4-5 frame--todo" data-video="raat" data-slot="3">
+          <span>Video 1 — raat lichten</span>
+        </div>
+      </figure>
+    </div>
+
+    <!-- 4 t/m 7 — vier vierkanten -->
+    <div class="row--quad">
+      <figure><div class="frame r-1-1 frame--todo" data-slot="4"><span>Foto 3 — klaver</span></div></figure>
+      <figure><div class="frame r-1-1 frame--todo" data-slot="5"><span>Foto 4 — bloesem</span></div></figure>
+      <figure><div class="frame r-1-1 frame--todo" data-slot="6"><span>Foto 5 — slingeren</span></div></figure>
+      <figure><div class="frame r-1-1 frame--todo" data-slot="7"><span>Foto 6 — potjes vullen</span></div></figure>
+    </div>
+
+    <!-- 8 — video, 16:9, volle breedte -->
+    <figure>
+      <div class="frame r-16-9 frame--lift frame--todo" data-video="tap" data-slot="8">
+        <span>Video 2 — honing uit de tap</span>
+      </div>
+      <figcaption>Uit de tap · film</figcaption>
+    </figure>
+
+    <!-- 9 + 10 — paar, 3:4 -->
+    <div class="row--pair">
+      <figure>
+        <div class="frame r-3-4 frame--todo" data-slot="9">
+          <span>Foto 7 — Nel en Jaap bij de kasten</span>
+        </div>
+        <figcaption>De imkers</figcaption>
+      </figure>
+      <figure>
+        <div class="frame r-3-4 frame--todo" data-slot="10">
+          <span>Foto 8 — de oogst van dit jaar</span>
+        </div>
+        <figcaption>De oogst</figcaption>
+      </figure>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <a href="/">Terug naar homepage</a>
+  </footer>
+
+</div>
+
+<script>
+  /* Video-ID's op één plek. Vul de YouTube-ID in (het deel na ?v= in de URL).
+     Zolang een ID leeg is, blijft de plek een placeholder en wordt er niets geladen. */
+  const VIDEOS = {
+    raat: { id: '', titel: 'Raat lichten',         knop: 'play' },
+    tap:  { id: '', titel: 'Honing uit de tap',    knop: 'play play--lg' },
+  };
+
+  const EMBED = id =>
+    'https://www.youtube-nocookie.com/embed/' + id +
+    '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+
+  const driehoek =
+    '<svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true">' +
+    '<path d="M0 0 L18 10 L0 20 Z" fill="#A85430"/></svg>';
+
+  document.querySelectorAll('[data-video]').forEach(frame => {
+    const v = VIDEOS[frame.dataset.video];
+    if (!v || !v.id) return;               // geen ID ingevuld: placeholder laten staan
+
+    frame.classList.remove('frame--todo');
+    frame.innerHTML =
+      '<img src="https://i.ytimg.com/vi/' + v.id + '/maxresdefault.jpg" alt="" ' +
+        'loading="lazy" decoding="async">' +
+      '<div class="overlay"><button class="' + v.knop + '" ' +
+        'aria-label="Video bekijken: ' + v.titel + '">' + driehoek + '</button></div>';
+
+    frame.querySelector('button').addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = EMBED(v.id);
+      f.title = v.titel;
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      f.loading = 'lazy';
+      frame.replaceChildren(f);
+    });
+  });
+</script>
+
+</body>
+</html>
