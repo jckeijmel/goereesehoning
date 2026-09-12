@@ -143,6 +143,10 @@
 
   .frame--lift { box-shadow: 0 30px 54px -34px rgba(55, 25, 25, .6); }
 
+  /* beide imkers staan links in hun foto; vanaf het midden bijsnijden
+     zou hun arm en de raat afkappen */
+  .frame--links > picture > img { object-position: 12% center; }
+
   /* staande video krijgt een smaller kader, anders domineert hij de pagina */
   .smal { max-width: 480px; margin-inline: auto; width: 100%; }
 
@@ -280,7 +284,7 @@
     <!-- 7 + 8 — de imkers, 3:4 paar -->
     <div class="row--pair">
       <figure>
-        <div class="frame r-3-4">
+        <div class="frame r-3-4 frame--links">
         <picture>
           <source type="image/webp" srcset="assets/qr/slingeren-300.webp 300w, assets/qr/slingeren-480.webp 480w, assets/qr/slingeren-700.webp 700w" sizes="(max-width: 560px) calc(100vw - 40px), 410px">
           <img src="assets/qr/slingeren-700.jpg" srcset="assets/qr/slingeren-300.jpg 300w, assets/qr/slingeren-480.jpg 480w, assets/qr/slingeren-700.jpg 700w" sizes="(max-width: 560px) calc(100vw - 40px), 410px"
@@ -290,7 +294,7 @@
         <figcaption>Jaap Keijmel</figcaption>
       </figure>
       <figure>
-        <div class="frame r-3-4">
+        <div class="frame r-3-4 frame--links">
         <picture>
           <source type="image/webp" srcset="assets/qr/nel-300.webp 300w, assets/qr/nel-480.webp 480w, assets/qr/nel-700.webp 700w" sizes="(max-width: 560px) calc(100vw - 40px), 410px">
           <img src="assets/qr/nel-700.jpg" srcset="assets/qr/nel-300.jpg 300w, assets/qr/nel-480.jpg 480w, assets/qr/nel-700.jpg 700w" sizes="(max-width: 560px) calc(100vw - 40px), 410px"
