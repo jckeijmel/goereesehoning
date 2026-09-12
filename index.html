@@ -195,6 +195,14 @@
       linear-gradient(to bottom, transparent 0, #000 6%, #000 93%, transparent 100%),
       linear-gradient(to right,  transparent 0, #000 5%, #000 95%, transparent 100%);
     mask-composite: intersect;
+
+    /* geen dubbeltik-zoom, geen iOS-vergrootpopup bij lang indrukken,
+       geen slepen of selecteren. Pinch-zoom op de pagina blijft werken. */
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   /* ---------- Verhaal ---------- */
@@ -341,7 +349,7 @@
   <picture>
     <source srcset="assets/pot.webp" type="image/webp">
     <img class="jar" src="assets/pot.jpg" width="1122" height="1402"
-         loading="lazy" decoding="async"
+         loading="lazy" decoding="async" draggable="false"
          alt="Pot Goereese Honing met een botanisch bedrukt kapje, op een aanrecht in het zonlicht">
   </picture>
 
