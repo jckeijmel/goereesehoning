@@ -135,12 +135,16 @@
   .frame > picture { position: absolute; inset: 0; display: block; }
 
   .r-16-10 { aspect-ratio: 16 / 10; }
+  .r-staand { aspect-ratio: 620 / 720; }
   .r-4-5   { aspect-ratio: 4 / 5; }
   .r-1-1   { aspect-ratio: 1 / 1; }
   .r-16-9  { aspect-ratio: 16 / 9; }
   .r-3-4   { aspect-ratio: 3 / 4; }
 
   .frame--lift { box-shadow: 0 30px 54px -34px rgba(55, 25, 25, .6); }
+
+  /* staande video krijgt een smaller kader, anders domineert hij de pagina */
+  .smal { max-width: 480px; margin-inline: auto; width: 100%; }
 
   figcaption {
     margin-top: 10px;
@@ -251,7 +255,17 @@
       <div class="frame r-16-9 frame--lift" data-video="twee"></div>
     </figure>
 
-    <!-- 4 — het honingraam, 16:9, volle breedte -->
+    <!-- 4 — video, bijna vierkant, smaller kader -->
+    <figure class="smal">
+      <div class="frame r-staand frame--lift" data-video="drie"></div>
+    </figure>
+
+    <!-- 5 — video, 16:9, volle breedte -->
+    <figure>
+      <div class="frame r-16-9 frame--lift" data-video="vier"></div>
+    </figure>
+
+    <!-- 6 — het honingraam, 16:9, volle breedte -->
     <figure>
       <div class="frame r-16-9 frame--lift">
         <picture>
@@ -300,8 +314,18 @@
   /* Video-ID's op één plek. Vul de YouTube-ID in (het deel na ?v= in de URL).
      Zolang een ID leeg is, blijft de plek een placeholder en wordt er niets geladen. */
   const VIDEOS = {
-    een:  { id: 'kjQFs_8A6I0', poster: 'video1', titel: 'Bijen in actie (slow motion)' },
-    twee: { id: 'D64r1IO9400', poster: 'video2', titel: 'Bijen — stuifmeel aan de pootjes' },
+    een:  { id: 'kjQFs_8A6I0', poster: 'video1', breedtes: [480, 800, 1200],
+            sizes: '(max-width: 920px) calc(100vw - 40px), 840px',
+            titel: 'Bijen in actie (slow motion)' },
+    twee: { id: 'D64r1IO9400', poster: 'video2', breedtes: [480, 800, 1200],
+            sizes: '(max-width: 920px) calc(100vw - 40px), 840px',
+            titel: 'Bijen — stuifmeel aan de pootjes' },
+    drie: { id: 'R4f6hzRFWSI', poster: 'video3', breedtes: [320, 480, 620],
+            sizes: '(max-width: 560px) calc(100vw - 40px), 480px',
+            titel: 'Bijen halen nectar en stuifmeel, begin van de zomer' },
+    vier: { id: '8Db0wi_o4nw', poster: 'video4', breedtes: [480, 800, 1200],
+            sizes: '(max-width: 920px) calc(100vw - 40px), 840px',
+            titel: 'Bijen in de kast; ze maken raten in de ramen' },
   };
 
   const EMBED = id =>
@@ -312,21 +336,19 @@
     '<svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true">' +
     '<path d="M0 0 L18 10 L0 20 Z" fill="#A85430"/></svg>';
 
-  function bouwFacades() {
-    document.querySelectorAll('[data-video]').forEach(frame => {
+  function bouwFacade(frame) {
+    {
     const v = VIDEOS[frame.dataset.video];
     if (!v || !v.id) return;               // geen ID ingevuld: placeholder laten staan
 
-    const sizes = '(max-width: 920px) calc(100vw - 40px), 840px';
+    const srcset = ext => v.breedtes
+      .map(w => 'assets/qr/' + v.poster + '-poster-' + w + '.' + ext + ' ' + w + 'w').join(', ');
+    const grootste = v.breedtes[v.breedtes.length - 1];
     frame.innerHTML =
       '<picture>' +
-        '<source type="image/webp" srcset="assets/qr/' + v.poster + '-poster-480.webp 480w, ' +
-          'assets/qr/' + v.poster + '-poster-800.webp 800w, ' +
-          'assets/qr/' + v.poster + '-poster-1200.webp 1200w" sizes="' + sizes + '">' +
-        '<img src="assets/qr/' + v.poster + '-poster-1200.jpg" ' +
-          'srcset="assets/qr/' + v.poster + '-poster-480.jpg 480w, ' +
-            'assets/qr/' + v.poster + '-poster-800.jpg 800w, ' +
-            'assets/qr/' + v.poster + '-poster-1200.jpg 1200w" sizes="' + sizes + '" ' +
+        '<source type="image/webp" srcset="' + srcset('webp') + '" sizes="' + v.sizes + '">' +
+        '<img src="assets/qr/' + v.poster + '-poster-' + grootste + '.jpg" ' +
+          'srcset="' + srcset('jpg') + '" sizes="' + v.sizes + '" ' +
           'alt="" loading="lazy" decoding="async" fetchpriority="low">' +
       '</picture>' +
       '<div class="overlay"><button class="play play--lg" ' +
@@ -341,12 +363,27 @@
       f.loading = 'lazy';
         frame.replaceChildren(f);
       });
-    });
+    }
   }
 
-  // pas na het laden: de posters mogen niet met de openingsfoto om bandbreedte vechten
-  if (document.readyState === 'complete') bouwFacades();
-  else window.addEventListener('load', bouwFacades);
+  // Facades pas opbouwen als een video in de buurt van het scherm komt.
+  // Chrome verruimt zijn eigen lazy-marge op trage verbindingen, waardoor
+  // anders alle posters meteen binnenkomen en met de openingsfoto concurreren.
+  function start() {
+    const kaders = [...document.querySelectorAll('[data-video]')];
+    if (!('IntersectionObserver' in window)) { kaders.forEach(bouwFacade); return; }
+    const obs = new IntersectionObserver((entries, o) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        o.unobserve(e.target);
+        bouwFacade(e.target);
+      });
+    }, { rootMargin: '300px 0px' });
+    kaders.forEach(k => obs.observe(k));
+  }
+
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start);
 </script>
 
 </body>
